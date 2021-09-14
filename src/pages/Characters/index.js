@@ -12,14 +12,14 @@ const Characters = () => {
     useEffect(() => {
         if (text) {
             api
-                .get(`characters?filter=${text}`)
-                .then((response) => setCharacters(response))
+                .get(`characters/${text}`)
+                .then((response) => setCharacters(response.data.data.results))
                 .catch((err) => {
                     console.error("ops! ocorreu um erro" + err)
                 })
         }
 
-    }, [])
+    }, [text])
 
     const handleMore = useCallback(async () => {
         try {
